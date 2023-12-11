@@ -3,11 +3,10 @@ import java.util.List;
 
 import com.rayen.useraaa.entities.User;
 import com.rayen.useraaa.service.UserService;
+import com.rayen.useraaa.service.register.RegistationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class UserRestController {
@@ -17,4 +16,15 @@ public class UserRestController {
     public List<User> getAllUsers() {
         return userService.findAllUsers();
     }
+    @PostMapping("/register")
+    public User register(@RequestBody RegistationRequest request)
+    {
+        return userService.registerUser(request);
+    }
+    @GetMapping("/verifyEmail/{token}")
+    public User verifyEmail(@PathVariable("token") String token){
+        return userService.validateToken(token);
+    }
+
+
 }

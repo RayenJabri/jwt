@@ -19,7 +19,7 @@ public class UserAaaApplication {
     @Autowired
     UserService userService;
 
-    /*@PostConstruct
+   /* @PostConstruct
      void init_users() {
  //ajouter les rôles
          userService.addRole(new Role(null,"ADMIN"));
